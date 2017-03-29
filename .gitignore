@@ -1,0 +1,15 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+.idea
+/public/packages
+/public/pdf
+/public/caf
+/public/xml
+/public/csv
+/public/cert
