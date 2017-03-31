@@ -9,7 +9,7 @@ class RoomsController extends \BaseController {
     {
         ExchangeController::find();
         $room = strtoupper($room);
-        $schedules = Schedule::where('start', '>=', date('Y-m-d 08:00:00'))->where('active',1)->where('end', '<=', date('Y-m-d 18:00:00'))->where('room', $room)->get();
+        $schedules = Schedule::where('start', '>=', date('Y-m-d 07:00:00'))->where('active',1)->where('end', '<=', date('Y-m-d 21:00:00'))->where('room', $room)->get();
         $events = [];
         foreach ($schedules as $schedule) {
             $events[] = Calendar::event(
