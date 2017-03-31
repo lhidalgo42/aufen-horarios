@@ -8,7 +8,9 @@
     <link rel="stylesheet" media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css"/>
 
     <style>
-        /* ... */
+        .fc-scroller {
+            overflow-y: hidden !important;
+        }
     </style>
 </head>
 <body>

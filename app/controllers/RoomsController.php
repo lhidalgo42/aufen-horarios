@@ -24,7 +24,13 @@ class RoomsController extends \BaseController {
             ->setOptions([
             'firstDay' => 1,
             'nowIndicator' => true,
-            'defaultView' => 'agendaDay'
+            'defaultView' => 'agendaDay',
+            'dragScroll' => false,
+            'header' => [
+                'left' => '',
+                'center' => date('d-m-Y'),
+                'right' => ''
+            ]
         ]);
 
         return View::make('pages.room')->with(compact('calendar'));
