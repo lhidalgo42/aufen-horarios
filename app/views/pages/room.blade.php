@@ -11,6 +11,10 @@
         .fc-scroller {
             overflow-y: hidden !important;
         }
+        body .fc {
+            font-size: 2em;
+        }
+
         body{
             background-color: white;
         }
