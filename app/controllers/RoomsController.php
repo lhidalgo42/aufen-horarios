@@ -25,10 +25,12 @@ class RoomsController extends \BaseController {
             'firstDay' => 1,
             'nowIndicator' => true,
             'defaultView' => 'agendaDay',
-            'dragScroll' => false,
+            'allDaySlot' => false,
+            'minTime' => '08:00:00',
+            'maxTime' => '20:00:00',
             'header' => [
                 'left' => '',
-                'center' => date('d-m-Y'),
+                'center' => 'title',
                 'right' => ''
             ]
         ]);
