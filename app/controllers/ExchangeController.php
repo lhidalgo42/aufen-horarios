@@ -61,7 +61,7 @@ class ExchangeController extends \BaseController {
                     }
                 }
                 elseif (count($schedules) == 1){
-                    $schedule = $schedule->first();
+                    $schedule = $schedules->first();
                     $schedule->name = $item->LastModifiedName;
                     $schedule->subject = $item->Subject;
                     $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
