@@ -43,11 +43,8 @@ class ExchangeController extends \BaseController {
             ]);
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
-            $schedules = Schedule::where('start','>',date('Y-m-d 04:00:00'))->where('end','<',date('Y-m-d 23:00:00'))->get();
-            foreach ($schedules as $sch) {
-                $schedule = Schedule::find($sch->id);
-                $schedule->destroy();
-            }
+            $schedules = Schedule::where('start','>',date('Y-m-d 04:00:00'))->where('end','<',date('Y-m-d 23:00:00'))->lists('id');
+            Schedule::destroy($schedules);
             foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
                 $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
                 if (count($schedules) == 0) {
