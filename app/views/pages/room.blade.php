@@ -1,20 +1,18 @@
-@extends('layouts.master')
-@section('content')
-<div class="container">
-    <table class="table table-bordered">
-        <tr>
-            <th>Nombre</th>
-            <th>Horario</th>
-        </tr>
-        @foreach($schedules as $schedule)
-            <tr>
-                <td rowspan="2">{{$schedule->name}}</td>
-                <td>{{$schedule->start}}</td>
-            </tr>
-            <tr>
-                <td>{{$schedule->end}}</td>
-            </tr>
-        @endforeach
-    </table>
-</div>
-@endsection
+<!doctype html>
+<html lang="en">
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+    <link rel="stylesheet" media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css"/>
+
+    <style>
+        /* ... */
+    </style>
+</head>
+<body>
+{{ $calendar->calendar() }}
+{{ $calendar->script() }}
+</body>
+</html>

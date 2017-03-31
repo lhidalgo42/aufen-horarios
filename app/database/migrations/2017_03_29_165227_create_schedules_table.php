@@ -15,11 +15,12 @@ class CreateSchedulesTable extends Migration {
 		Schema::create('schedules', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->string('uid');
             $table->string('name');
             $table->string('subject');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->integer('room_id');
+            $table->string('room');
 			$table->timestamps();
 		});
 	}

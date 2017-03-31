@@ -124,9 +124,7 @@ return array(
         'Laracasts\Validation\ValidationServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
 		'Ixudra\Curl\CurlServiceProvider',
-
-
-
+        'MaddHatter\LaravelFullcalendar\ServiceProvider',
 	),
 
 	/*
@@ -193,7 +191,8 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Curl'	            => 'Ixudra\Curl\Facades\Curl'
-	),
+		'Curl'	            => 'Ixudra\Curl\Facades\Curl',
+        'Calendar'          => 'MaddHatter\LaravelFullcalendar\Facades\Calendar',
+        ),
 
 );

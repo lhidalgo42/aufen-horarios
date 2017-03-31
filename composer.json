@@ -8,7 +8,10 @@
 		"laravel/framework": "4.2.*",
 		"laracasts/validation" : "~1.0",
 		"ixudra/curl": "6.*",
-		"garethp/php-ews": "^0.9.1"
+		"garethp/php-ews": "^0.9.1",
+		"nesbot/carbon": "~1.21",
+        "maddhatter/laravel-fullcalendar": "~0.1"
+
 	},
 	"require-dev": {
 		"way/generators": "2.*",
