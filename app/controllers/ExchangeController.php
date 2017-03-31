@@ -43,8 +43,11 @@ class ExchangeController extends \BaseController {
             ]);
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
-            $schedules = Schedule::where('start','>',date('Y-m-d 04:00:00'))->where('end','<',date('Y-m-d 23:00:00'))->lists('id');
-            Schedule::destroy($schedules);
+            $schedules = Schedule::where('start','>',date('Y-m-d 04:00:00'))->where('end','<',date('Y-m-d 23:00:00'))->get();
+            foreach ($schedules as $schedule) {
+                $schedule->active = 0;
+                $schedule->save();
+            }
             foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
                 $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
                 if (count($schedules) == 0) {
@@ -55,6 +58,7 @@ class ExchangeController extends \BaseController {
                     $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
                     $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
                     $schedule->room = strtoupper($item->Location);
+                    $schedule->active=1;
                     $schedule->save();
                     if (Room::where('name', $item->Location)->count() == 0) {
                         $room = new Room();
@@ -69,6 +73,7 @@ class ExchangeController extends \BaseController {
                     $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
                     $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
                     $schedule->room = strtoupper($item->Location);
+                    $schedule->active =1;
                     $schedule->save();
                 }
             }

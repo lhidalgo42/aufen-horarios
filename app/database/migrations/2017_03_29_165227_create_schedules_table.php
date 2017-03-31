@@ -21,6 +21,7 @@ class CreateSchedulesTable extends Migration {
             $table->dateTime('start');
             $table->dateTime('end');
             $table->string('room');
+            $table->integer('active');
 			$table->timestamps();
 		});
 	}
