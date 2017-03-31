@@ -22,12 +22,17 @@ class RoomsController extends \BaseController {
 
         $calendar = Calendar::addEvents($events)
             ->setOptions([
-            'firstDay' => 1,
             'nowIndicator' => true,
             'defaultView' => 'agendaDay',
             'allDaySlot' => false,
-            'minTime' => '08:00:00',
-            'maxTime' => '20:00:00',
+            'minTime' => '07:00:00',
+            'maxTime' => '21:00:00',
+            'timeFormat' => [
+                'agenda'=> 'h:mm'
+            ],
+            'axisFormat' => 'H:mm',
+            'handleWindowResize' => true,
+            'contentHeight' => 1182,
             'header' => [
                 'left' => '',
                 'center' => 'title',

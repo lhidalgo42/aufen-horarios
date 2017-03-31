@@ -1,18 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
-    <link rel="stylesheet" media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css"/>
-
+    <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
+    <link rel="stylesheet" media="print" href="/css/fullcalendar.print.css"/>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/fullcalendar.min.js"></script>
     <style>
-        .fc-scroller {
-            overflow-y: hidden !important;
-        }
         body .fc {
-            font-size: 2em;
+        //font-size: 1.5em;
+        }
+        .fc-title,.fc-time{
+            font-size: 1.7em;
+            text-align: center;
+        }
+        .fc-day-header{
+            font-size: 1.7em;
         }
 
         body{
