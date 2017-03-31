@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <META HTTP-EQUIV="refresh" CONTENT="5">
     <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
     <link rel="stylesheet" media="print" href="/css/fullcalendar.print.css"/>
     <script src="/js/moment.min.js"></script>
@@ -10,9 +11,16 @@
         body .fc {
         //font-size: 1.5em;
         }
-        .fc-title,.fc-time{
+       .fc-time{
             font-size: 1.7em;
             text-align: center;
+        }
+        .fc-title{
+            font-size: 2.2em;
+            text-align: center;
+        }
+        .fc-content >.fc-time{
+            font-size: 1.7em;
         }
         .fc-day-header{
             font-size: 1.7em;
