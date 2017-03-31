@@ -11,6 +11,9 @@
         .fc-scroller {
             overflow-y: hidden !important;
         }
+        body{
+            background-color: white;
+        }
     </style>
 </head>
 <body>

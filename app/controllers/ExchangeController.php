@@ -44,7 +44,8 @@ class ExchangeController extends \BaseController {
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
             foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
-                if (Schedule::where('uid', $item->ItemId->Id)->count() == 0) {
+                $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
+                if (count($schedules) == 0) {
                     $schedule = new Schedule();
                     $schedule->uid = $item->ItemId->Id;
                     $schedule->name = $item->LastModifiedName;
@@ -58,6 +59,15 @@ class ExchangeController extends \BaseController {
                         $room->name = $item->Location;
                         $room->save();
                     }
+                }
+                elseif (count($schedules) == 1){
+                    $schedule = $schedule->first();
+                    $schedule->name = $item->LastModifiedName;
+                    $schedule->subject = $item->Subject;
+                    $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
+                    $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
+                    $schedule->room = strtoupper($item->Location);
+                    $schedule->save();
                 }
             }
         }
