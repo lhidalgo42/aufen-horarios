@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta http-equiv="refresh" content="5">
     <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
     <link rel="stylesheet" media="print" href="/css/fullcalendar.print.css"/>
     <script src="/js/moment.min.js"></script>
@@ -15,7 +16,7 @@
             text-align: center;
         }
         .fc-title{
-            font-size: 2.2em;
+            font-size: 2.6em;
             text-align: center;
         }
         .fc-content >.fc-time{
@@ -33,7 +34,5 @@
 <body>
 {{ $calendar->calendar() }}
 {{ $calendar->script() }}
-<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/f8ALdaXPuPE?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
-</div>
 </body>
 </html>
