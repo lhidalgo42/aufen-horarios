@@ -38,7 +38,8 @@ class RoomsController extends \BaseController
                     'right' => ''
                 ],
                 'nowIndicator' => true,
-                'titleFormat' => ' '
+                'titleFormat' => ' ',
+                'eventColor'=> '#378006'
             ]);
 
         return View::make('pages.room')->with(compact('calendar','room'));
