@@ -37,10 +37,11 @@ class RoomsController extends \BaseController
                     'center' => 'title',
                     'right' => ''
                 ],
-                'nowIndicator' => true
+                'nowIndicator' => true,
+                'titleFormat' => ' '
             ]);
 
-        return View::make('pages.room')->with(compact('calendar'));
+        return View::make('pages.room')->with(compact('calendar','room'));
     }
 
 }

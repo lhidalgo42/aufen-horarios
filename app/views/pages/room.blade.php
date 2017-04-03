@@ -56,8 +56,18 @@
         <img src="/img/logo.JPG" alt="" style="width: 100%">
     </div>
     <div class="col-sm-3">
-        <span id="clock" style="width: 100%;font-size: 70px">&nbsp;</span>
+        <div class="col-md-12">
+            <span id="clock" style="width: 100%;font-size: 70px">&nbsp;</span>
+        </div>
+        <div class="col-md-12">
+            <span id="date" style="width: 100%;font-size: 50px">&nbsp;</span>
+        </div>
     </div>
+</div>
+<div class="col-md-12" style="text-align: center">
+    <span style="font-size: 50px;font-weight: bold">Sala de Reuniones : {{$room}}</span>
+</div>
+<div class="col-md-12">
     {{ $calendar->calendar() }}
     {{ $calendar->script() }}
 </div>
@@ -80,6 +90,19 @@
         // Update the time display
         document.getElementById("clock").firstChild.nodeValue = currentTimeString;
     }
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+    }
+    if(mm<10){
+        mm='0'+mm;
+    }
+    var today = dd+'-'+mm+'-'+yyyy;
+    document.getElementById("date").firstChild.nodeValue = today;
 
     // -->
 </script>
