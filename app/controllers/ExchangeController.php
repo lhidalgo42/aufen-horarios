@@ -43,7 +43,7 @@ class ExchangeController extends \BaseController {
             ]);
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
-            $schedules = Schedule::where('start', '>', date('Y-m-d 04:00:00'))->where('end', '<', date('Y-m-d 23:00:00'))->get();
+            $schedules = Schedule::where('active',1)->get();
             if (count($schedules)) {
                 foreach ($schedules as $schedule) {
                     $schedule->active = 0;
