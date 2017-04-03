@@ -55,7 +55,7 @@
 <body>
 <div class="col-md-12" style="height: 203px;">
     <div class="col-sm-9">
-        <img src="/img/logo_chico.jpg" alt="" style="width: 100%">
+        <img src="https://preview.ibb.co/j5C8Aa/logo.jpg" alt="" style="width: 100%">
     </div>
     <div class="col-sm-3">
         <div class="col-md-12">
