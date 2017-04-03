@@ -5,38 +5,36 @@ use garethp\ews\API\Exception\AutodiscoverFailed;
 use garethp\ews\API;
 
 
-class ExchangeController extends \BaseController
-{
+class ExchangeController extends \BaseController {
 
-    /**
-     * Display a listing of the resource.
-     * GET /exchange
-     *
-     * @return Response
-     */
-    public function discover()
-    {
+	/**
+	 * Display a listing of the resource.
+	 * GET /exchange
+	 *
+	 * @return Response
+	 */
+	public function discover(){
 
         try {
             $username = 'lhidalgo@alumnos.uai.cl';
             $password = '4380.UoY';
-            $api = ExchangeAutodiscover::getAPI($username, $password);
+            $api = ExchangeAutodiscover::getAPI($username,$password);
 
             $server = $api->getClient()->getServer();
             $version = $api->getClient()->getVersion();
-            return json_encode(['server' => $server, 'Version' => $version]);
+            return json_encode(['server' => $server,'Version' => $version]);
         } catch (AutodiscoverFailed $exception) {
             //Autodiscover failed
         }
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     * GET /exchange/create
-     *
-     * @return Response
-     */
-    public static function find()
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /exchange/create
+	 *
+	 * @return Response
+	 */
+	public static function find()
     {
         $users = User::all();
         foreach ($users as $user) {
@@ -45,18 +43,15 @@ class ExchangeController extends \BaseController
             ]);
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
-            $schedules = Schedule::where('start', '>=', date('Y-m-d 06:00:00'))->where('end', '<', date('Y-m-d 22:00:00'))->get();
-
-            if (count($schedules) > 0) {
+            $schedules = Schedule::where('start', '>', date('Y-m-d 04:00:00'))->where('end', '<', date('Y-m-d 23:00:00'))->get();
+            if (count($schedules)) {
                 foreach ($schedules as $schedule) {
                     $schedule->active = 0;
                     $schedule->save();
                 }
             }
-        }
-        if (count($items->getItems()) > 0) {
-            foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
-                if(isset($item->ItemId->Id)) {
+            if (isset($items->getItems()->toXmlObject()->CalendarItem)) {
+                foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
                     $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
                     if (count($schedules) == 0) {
                         $schedule = new Schedule();
@@ -87,4 +82,6 @@ class ExchangeController extends \BaseController
             }
         }
     }
+
+
 }
