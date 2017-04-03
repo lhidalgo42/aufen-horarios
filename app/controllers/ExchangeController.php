@@ -45,7 +45,7 @@ class ExchangeController extends \BaseController
             ]);
             $calendar = $api->getCalendar();
             $items = $calendar->getCalendarItems(date('Y-m-d'));
-            $schedules = Schedule::where('start', '>', date('Y-m-d 04:00:00'))->where('end', '<', date('Y-m-d 23:00:00'))->get();
+            $schedules = Schedule::where('start', '>=', date('Y-m-d 06:00:00'))->where('end', '<', date('Y-m-d 22:00:00'))->get();
 
             if (count($schedules) > 0) {
                 foreach ($schedules as $schedule) {
@@ -56,31 +56,33 @@ class ExchangeController extends \BaseController
         }
         if (count($items->getItems()) > 0) {
             foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
-                $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
-                if (count($schedules) == 0) {
-                    $schedule = new Schedule();
-                    $schedule->uid = $item->ItemId->Id;
-                    $schedule->name = $item->LastModifiedName;
-                    $schedule->subject = $item->Subject;
-                    $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
-                    $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
-                    $schedule->room = strtoupper($item->Location);
-                    $schedule->active = 1;
-                    $schedule->save();
-                    if (Room::where('name', $item->Location)->count() == 0) {
-                        $room = new Room();
-                        $room->name = $item->Location;
-                        $room->save();
+                if(isset($item->ItemId->Id)) {
+                    $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
+                    if (count($schedules) == 0) {
+                        $schedule = new Schedule();
+                        $schedule->uid = $item->ItemId->Id;
+                        $schedule->name = $item->LastModifiedName;
+                        $schedule->subject = $item->Subject;
+                        $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
+                        $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
+                        $schedule->room = strtoupper($item->Location);
+                        $schedule->active = 1;
+                        $schedule->save();
+                        if (Room::where('name', $item->Location)->count() == 0) {
+                            $room = new Room();
+                            $room->name = $item->Location;
+                            $room->save();
+                        }
+                    } elseif (count($schedules) == 1) {
+                        $schedule = $schedules->first();
+                        $schedule->name = $item->LastModifiedName;
+                        $schedule->subject = $item->Subject;
+                        $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
+                        $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
+                        $schedule->room = strtoupper($item->Location);
+                        $schedule->active = 1;
+                        $schedule->save();
                     }
-                } elseif (count($schedules) == 1) {
-                    $schedule = $schedules->first();
-                    $schedule->name = $item->LastModifiedName;
-                    $schedule->subject = $item->Subject;
-                    $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
-                    $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
-                    $schedule->room = strtoupper($item->Location);
-                    $schedule->active = 1;
-                    $schedule->save();
                 }
             }
         }
