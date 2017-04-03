@@ -25,14 +25,14 @@ class RoomsController extends \BaseController {
             'nowIndicator' => true,
             'defaultView' => 'agendaDay',
             'allDaySlot' => false,
-            'minTime' => '07:00:00',
-            'maxTime' => '21:00:00',
+            'minTime' => '09:00:00',
+            'maxTime' => '19:00:00',
             'timeFormat' => [
                 'agenda'=> 'h:mm'
             ],
             'axisFormat' => 'H:mm',
             'handleWindowResize' => true,
-            'contentHeight' => 1182,
+            'contentHeight' => 854,
             'header' => [
                 'left' => '',
                 'center' => 'title',
