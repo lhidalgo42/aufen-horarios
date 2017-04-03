@@ -52,33 +52,35 @@ class ExchangeController extends \BaseController
                     $schedule->save();
                 }
             }
-            foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
-                if (isset($item->ItemId->Id)) {
-                    $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
-                    if (count($schedules) == 0) {
-                        $schedule = new Schedule();
-                        $schedule->uid = $item->ItemId->Id;
-                        $schedule->name = $item->LastModifiedName;
-                        $schedule->subject = $item->Subject;
-                        $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
-                        $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
-                        $schedule->room = strtoupper($item->Location);
-                        $schedule->active = 1;
-                        $schedule->save();
-                        if (Room::where('name', $item->Location)->count() == 0) {
-                            $room = new Room();
-                            $room->name = $item->Location;
-                            $room->save();
+            if (isset($items->getItems()->toXmlObject()->CalendarItem)) {
+                foreach ($items->getItems()->toXmlObject()->CalendarItem as $item) {
+                    if (isset($item->ItemId->Id)) {
+                        $schedules = Schedule::where('uid', $item->ItemId->Id)->get();
+                        if (count($schedules) == 0) {
+                            $schedule = new Schedule();
+                            $schedule->uid = $item->ItemId->Id;
+                            $schedule->name = $item->LastModifiedName;
+                            $schedule->subject = $item->Subject;
+                            $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
+                            $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
+                            $schedule->room = strtoupper($item->Location);
+                            $schedule->active = 1;
+                            $schedule->save();
+                            if (Room::where('name', $item->Location)->count() == 0) {
+                                $room = new Room();
+                                $room->name = $item->Location;
+                                $room->save();
+                            }
+                        } elseif (count($schedules) == 1) {
+                            $schedule = $schedules->first();
+                            $schedule->name = $item->LastModifiedName;
+                            $schedule->subject = $item->Subject;
+                            $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
+                            $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
+                            $schedule->room = strtoupper($item->Location);
+                            $schedule->active = 1;
+                            $schedule->save();
                         }
-                    } elseif (count($schedules) == 1) {
-                        $schedule = $schedules->first();
-                        $schedule->name = $item->LastModifiedName;
-                        $schedule->subject = $item->Subject;
-                        $schedule->start = Carbon\Carbon::parse($item->Start)->addHours(-3)->format('Y-m-d H:i:s');
-                        $schedule->end = Carbon\Carbon::parse($item->End)->addHours(-3)->format('Y-m-d H:i:s');
-                        $schedule->room = strtoupper($item->Location);
-                        $schedule->active = 1;
-                        $schedule->save();
                     }
                 }
             }
