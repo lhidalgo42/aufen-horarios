@@ -57,7 +57,7 @@
     </div>
     <div class="col-sm-3">
         <div class="col-md-12">
-            <span id="clock" style="width: 100%;font-size: 55px">{{date('h:i A')}}</span>
+            <span id="clock" style="width: 100%;font-size: 50px">{{date('h:i A')}}</span>
         </div>
         <div class="col-md-12">
             <span id="date" style="width: 100%;font-size: 35px">{{date('d-m-y')}}</span>
