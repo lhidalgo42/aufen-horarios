@@ -3,15 +3,16 @@
 use garethp\ews\API;
 use garethp\ews\API\Enumeration;
 
-class RoomsController extends \BaseController {
+class RoomsController extends \BaseController
+{
 
-	public function get($room)
+    public function get($room)
     {
         ExchangeController::find();
         $room = strtoupper($room);
-        $schedules = Schedule::where('start', '>=', date('Y-m-d 09:00:00'))->where('active',1)->where('end', '<=', date('Y-m-d 19:00:00'))->where('room', $room)->get();
+        $schedules = Schedule::where('start', '>=', date('Y-m-d 09:00:00'))->where('active', 1)->where('end', '<=', date('Y-m-d 19:00:00'))->where('room', $room)->get();
         $events = [];
-        if(count($schedules)>0) {
+        if (count($schedules) > 0) {
             foreach ($schedules as $schedule) {
                 $events[] = Calendar::event(
                     $schedule->name,
@@ -24,23 +25,19 @@ class RoomsController extends \BaseController {
 
         $calendar = Calendar::addEvents($events)
             ->setOptions([
-            'nowIndicator' => true,
-            'defaultView' => 'agendaDay',
-            'allDaySlot' => false,
-            'minTime' => '09:00:00',
-            'maxTime' => '19:00:00',
-            'timeFormat' => [
-                'agenda'=> 'h:mm'
-            ],
-            'axisFormat' => 'H:mm',
-            'handleWindowResize' => true,
-            'contentHeight' => 854,
-            'header' => [
-                'left' => '',
-                'center' => 'title',
-                'right' => ''
-            ]
-        ]);
+                'defaultView' => 'agendaDay',
+                'allDaySlot' => false,
+                'minTime' => '09:00:00',
+                'maxTime' => '19:00:00',
+                'lang' =>'es',
+                'contentHeight' => 854,
+                'header' => [   
+                    'left' => '',
+                    'center' => 'title',
+                    'right' => ''
+                ],
+                'nowIndicator' => true
+            ]);
 
         return View::make('pages.room')->with(compact('calendar'));
     }
