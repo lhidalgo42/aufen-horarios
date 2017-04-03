@@ -11,7 +11,7 @@
     <script src="/js/locale/es-do.js"></script>
     <style>
         body .fc {
-        / / font-size: 1.5 em;
+        / / font-size: 2.6em;
         }
 
         .fc-time {
@@ -22,10 +22,12 @@
         .fc-toolbar, .fc-header-toolbar > .fc-center {
             text-transform: uppercase;
             font-weight: bold;
+
         }
 
-        .fc-today {
+        .fc-day-header, .fc-widget-header, .fc-mon {
             text-transform: uppercase;
+            font-size: 1.3em;
         }
 
         .fc-title {
