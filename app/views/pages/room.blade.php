@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- <meta http-equiv="refresh" content="5"> -->
+    <meta http-equiv="refresh" content="5">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
     <link rel="stylesheet" media="print" href="/css/fullcalendar.print.css"/>
@@ -60,7 +60,7 @@
             <span id="clock" style="width: 100%;font-size: 70px">&nbsp;</span>
         </div>
         <div class="col-md-12">
-            <span id="date" style="width: 100%;font-size: 50px">&nbsp;</span>
+            <span id="date" style="width: 100%;font-size: 42px">&nbsp;</span>
         </div>
     </div>
 </div>
