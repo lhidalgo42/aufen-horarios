@@ -30,7 +30,7 @@ class RoomsController extends \BaseController
                 'minTime' => '09:00:00',
                 'maxTime' => '19:00:00',
                 'lang' =>'es',
-                'contentHeight' => 800,
+                'contentHeight' => 1073,
                 'timeFormat' => 'h:mm',
                 'header' => [
                     'left' => '',

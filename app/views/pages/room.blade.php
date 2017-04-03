@@ -15,7 +15,7 @@
         }
 
         .fc-time {
-            font-size: 1.7em;
+            font-size: 2.4em;
             text-align: center;
         }
 
@@ -57,14 +57,14 @@
     </div>
     <div class="col-sm-3">
         <div class="col-md-12">
-            <span id="clock" style="width: 100%;font-size: 60px">{{date('h:i A')}}</span>
+            <span id="clock" style="width: 100%;font-size: 55px">{{date('h:i A')}}</span>
         </div>
         <div class="col-md-12">
-            <span id="date" style="width: 100%;font-size: 35px">{{date('d-m-Y')}}</span>
+            <span id="date" style="width: 100%;font-size: 35px">{{date('d-m-y')}}</span>
         </div>
     </div>
 </div>
-<div class="col-md-12" style="text-align: center">
+<div class="col-md-12" style="text-align: center;padding-top: 50px;padding-bottom: 50px">
     <span style="font-size: 50px;font-weight: bold">Sala de Reuniones : {{$room}}</span>
 </div>
 <div class="col-md-12">
