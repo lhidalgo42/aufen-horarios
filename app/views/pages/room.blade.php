@@ -70,6 +70,9 @@
     <span style="font-size: 50px;font-weight: bold">Sala de Reuniones : {{$room}}</span>
 </div>
 <div class="col-md-12">
+    <script>
+        moment.tz.setDefault("Chile/Continental");
+    </script>
     {{ $calendar->calendar() }}
     {{ $calendar->script() }}
 </div>
